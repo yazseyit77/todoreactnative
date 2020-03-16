@@ -12,7 +12,8 @@ const Header = props => {
 
 const styles = StyleSheet.create({
   header: {
-    height: 60,
+    height: 70,
+    paddingTop: 25,
     padding: 15,
     backgroundColor: "darkslateblue"
   },

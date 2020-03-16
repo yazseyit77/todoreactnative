@@ -1,12 +1,19 @@
 import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, Button } from "react-native";
 import { getCurrentFrame } from "expo/build/AR";
+// import { Ionicons } from "@expo/vector-icons";
 
-const ListItem = ({ item }) => {
+const ListItem = ({ item, deleteItem }) => {
   return (
     <TouchableOpacity style={styles.listItem}>
       <View style={styles.listItemView}>
         <Text style={styles.listItemText}>{item.text}</Text>
+        <Button
+          title="Remove"
+          color="firebrick"
+          onPress={() => deleteItem(item.id)}
+        />
+        {/* <Ionicons name="md-checkmark-circle" size={32} color="green" /> */}
       </View>
     </TouchableOpacity>
   );
