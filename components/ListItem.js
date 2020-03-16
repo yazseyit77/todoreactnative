@@ -13,7 +13,6 @@ const ListItem = ({ item, deleteItem }) => {
           color="firebrick"
           onPress={() => deleteItem(item.id)}
         />
-        {/* <Ionicons name="md-checkmark-circle" size={32} color="green" /> */}
       </View>
     </TouchableOpacity>
   );

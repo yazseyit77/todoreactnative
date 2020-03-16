@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, FlatList } from "react-native";
+import { View, Text, StyleSheet, FlatList, Alert } from "react-native";
 import { getCurrentFrame } from "expo/build/AR";
 import Header from "./components/Header";
 import ListItem from "./components/ListItem";
@@ -20,17 +20,26 @@ const App = () => {
       return prevItems.filter(item => item.id != id);
     });
   };
+  const addItem = text => {
+    if (!text) {
+      Alert.alert("Error", "Please add an item!", { text: "Ok" });
+    } else {
+      setItems(prevItems => {
+        return [{ id: uuid(), text }, ...prevItems];
+      });
+    }
+  };
 
   return (
     <View style={styles.container}>
       <Header />
-      <AddItem />
       <FlatList
         data={items}
         renderItem={({ item }) => (
           <ListItem item={item} deleteItem={deleteItem} />
         )}
       />
+      <AddItem addItem={addItem} />
     </View>
   );
 };

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -9,29 +9,49 @@ import {
 } from "react-native";
 import { getCurrentFrame } from "expo/build/AR";
 
-const AddItem = ({ item, deleteItem }) => {
+const AddItem = ({ item, addItem }) => {
+  const [text, setText] = useState("");
+
+  const onChange = textValue => setText(textValue);
+
   return (
-    <View>
-      <TextInput placeholder="Add Item ..." style={styles.input} />
-      <TouchableOpacity style={styles.btn}>
-        <Button title="Add Item" style={styles.btnText} />
-      </TouchableOpacity>
-    </View>
+    <TouchableOpacity style={styles.btn}>
+      <View style={styles.listItemView}>
+        <TextInput
+          placeholder="Add Item ..."
+          style={styles.input}
+          onChangeText={onChange}
+        />
+        <Button
+          title="Add Item"
+          style={styles.btnText}
+          onPress={() => addItem(text)}
+        />
+      </View>
+    </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
   input: {
-    height: 60,
+    height: 40,
     padding: 8,
-    fontSize: 16
+    fontSize: 16,
+    backgroundColor: "#c2bad8",
+    marginLeft: 30,
+    marginRight: 30,
+    textAlign: "center",
+    width: 700
   },
   btn: {
-    backgroundColor: "#c2bad8",
     padding: 9,
     margin: 5,
-    width: 170,
-    justifyContent: "center"
+    paddingRight: 150
+  },
+  listItemView: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center"
   },
   btnText: {
     color: "darkslateblue",
